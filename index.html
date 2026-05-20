@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:#000;
+color:white;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100vh;
+top:0;
+left:0;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+opacity:0;
+pointer-events:none;
+transition:1s ease;
+background:linear-gradient(135deg,#000,#1a001a,#ff4da6);
+overflow:hidden;
+}
+
+.page.active{
+opacity:1;
+pointer-events:auto;
+}
+
+h1{
+font-size:3rem;
+text-align:center;
+margin-bottom:20px;
+text-shadow:0 0 20px #ff66cc;
+}
+
+p{
+max-width:700px;
+text-align:center;
+font-size:1.1rem;
+line-height:1.8;
+color:#f5f5f5;
+}
+
+button{
+margin-top:30px;
+padding:14px 35px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4da6,#ff99cc);
+color:white;
+font-size:1rem;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 20px rgba(255,255,255,0.3);
+}
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px #ff66cc;
+}
+
+.bg-hearts span{
+position:absolute;
+bottom:-100px;
+width:20px;
+height:20px;
+background:rgba(255,255,255,0.1);
+animation:float 10s linear infinite;
+transform:rotate(45deg);
+}
+
+.bg-hearts span::before,
+.bg-hearts span::after{
+content:'';
+position:absolute;
+width:20px;
+height:20px;
+background:inherit;
+border-radius:50%;
+}
+
+.bg-hearts span::before{
+top:-10px;
+left:0;
+}
+
+.bg-hearts span::after{
+left:-10px;
+top:0;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0) rotate(45deg);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(45deg);
+opacity:0;
+}
+}
+
+/* PASSWORD PAGE */
+
+.password-box{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:25px;
+box-shadow:0 0 30px rgba(255,255,255,0.1);
+text-align:center;
+width:320px;
+}
+
+.password-display{
+width:100%;
+height:55px;
+margin-bottom:20px;
+border:none;
+border-radius:15px;
+text-align:center;
+font-size:1.8rem;
+background:rgba(255,255,255,0.1);
+color:white;
+letter-spacing:10px;
+}
+
+.keypad{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.key{
+padding:18px;
+border-radius:15px;
+background:rgba(255,255,255,0.08);
+font-size:1.3rem;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 10px rgba(255,255,255,0.08);
+}
+
+.key:hover{
+background:#ff4da6;
+transform:scale(1.08);
+}
+
+.photo-card{
+width:320px;
+max-width:90%;
+background:rgba(255,255,255,0.08);
+padding:15px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 30px rgba(255,255,255,0.15);
+animation:zoom 1.5s ease;
+}
+
+.photo-card img{
+width:100%;
+border-radius:20px;
+}
+
+.note{
+margin-top:20px;
+font-size:1rem;
+color:#fff;
+text-align:center;
+}
+
+@keyframes zoom{
+from{
+transform:scale(0.8);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.typing{
+overflow:hidden;
+border-right:3px solid white;
+white-space:nowrap;
+width:0;
+animation:typing 5s steps(40,end) forwards,
+blink .7s infinite;
+}
+
+@keyframes typing{
+from{width:0}
+to{width:100%}
+}
+
+@keyframes blink{
+50%{
+border-color:transparent;
+}
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+font-size:2rem;
+letter-spacing:3px;
+color:white;
+animation:fadeOut 2s forwards;
+animation-delay:2s;
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:2rem;
+}
+
+p{
+font-size:1rem;
+}
+
+.password-box{
+width:95%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div id="loader">
+Loading Love ❤️
+</div>
+
+<!-- HEARTS -->
+<div class="bg-hearts">
+<span style="left:10%;animation-delay:0s"></span>
+<span style="left:25%;animation-delay:2s"></span>
+<span style="left:40%;animation-delay:4s"></span>
+<span style="left:60%;animation-delay:1s"></span>
+<span style="left:75%;animation-delay:3s"></span>
+<span style="left:90%;animation-delay:5s"></span>
+</div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+
+<div class="password-box">
+
+<h2 style="margin-bottom:20px;">
+Enter the Secret Code ❤️
+</h2>
+
+<input type="password" id="passwordDisplay" class="password-display" readonly>
+
+<div class="keypad">
+
+<div class="key" onclick="press(1)">1</div>
+<div class="key" onclick="press(2)">2</div>
+<div class="key" onclick="press(3)">3</div>
+
+<div class="key" onclick="press(4)">4</div>
+<div class="key" onclick="press(5)">5</div>
+<div class="key" onclick="press(6)">6</div>
+
+<div class="key" onclick="press(7)">7</div>
+<div class="key" onclick="press(8)">8</div>
+<div class="key" onclick="press(9)">9</div>
+
+<div class="key" onclick="clearPass()">❌</div>
+<div class="key" onclick="press(0)">0</div>
+<div class="key" onclick="checkPassword()">❤️</div>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+
+<h1>Happy Birthday My Sanudii ❤️</h1>
+
+<p>
+Every moment with you feels special.<br>
+Your smile is the most beautiful part of my life.<br>
+khup god ahe maza bal assach kayam mazya sobat raha.<br>
+Happy Birthday, My Love ❤️
+
+Today is not just a special day for you, it’s a special day for me too… because the person who changed my life was born today.
+Before you came into my life, everything felt normal, but after meeting you(30 july 2023) even the smallest moments started feeling beautiful. Your smile gives me peace, your voice makes my day better, and your presence alone is enough to make everything feel chan my babdyaa
+
+I may not always express everything perfectly, but one thing is true — you mean a lot to me. More than words can explain. You are one of the purest and most beautiful parts of my life, and I genuinely feel lucky to have you. Every memory with you, every conversation, every laugh, and even every small fight has become something precious to me.
+
+On your birthday, I just want you to know that you deserve all the happiness, love, success, and peace in this world. I hope your smile never fades, your heart always stays soft, and your dreams come true one by one. No matter what happens in life, I’ll always pray for your happiness first.
+
+Thank you for being you. Thank you for making my life feel warmer, brighter, and more meaningful.
+Once again, Happy Birthday to the most special person in my life . BALA  I LOVE YOU SOO MUCH ❤️
+
+</p>
+
+<button onclick="nextPage(3)">
+Next ❤️
+</button>
+
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+
+<div class="photo-card">
+<img src="YOUR_PHOTO_1.jpg" alt="">
+<div class="note">
+Some memories become the reason behind happiness ❤️.<br>
+hite mala apla 1st photo takycha hota but nhi jamala 
+kiti chan moment hota 1st time asa pn alo ektra sagla khi ajun lakshat ahe bogdya khali apan photo kadhla hota samrudhhi chya mummy ne pahila hota  aplyla #memreable zala ha photo hychi gibli trrr khup chan zali
+</div>
+</div>
+
+<button onclick="nextPage(4)">
+Next ❤️
+</button>
+
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+
+<div class="photo-card">
+<img src="YOUR_PHOTO_2.jpg" alt="">
+<div class="note">
+No matter what happens, you will always stay special for me.<br>
+kass la gelto tithla photo takycha hot but ng=hi ala takta
+hite pn apan khup chan majja keli na vlog banvla tu gadi chalavli ani last la papa che call liti khi zala na pn hi pn bhetmazta sathi special zali khuppp love you makada
+</div>
+</div>
+
+<button onclick="nextPage(5)">
+Final ❤️
+</button>
+
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+
+<h1>Thank You{tuza shana bal vedudii} ❤️</h1>
+
+<p class="typing">
+You are the best part of my life.
+</p>
+
+<button onclick="restartSite()">
+Restart ❤️
+</button>
+
+</section>
+
+<script>
+
+let password = "";
+let correctPassword = "2216";
+
+function press(num){
+
+if(password.length < 6){
+password += num;
+document.getElementById("passwordDisplay").value = password;
+}
+
+}
+
+function clearPass(){
+password = "";
+document.getElementById("passwordDisplay").value = "";
+}
+
+function checkPassword(){
+
+if(password === correctPassword){
+
+document.getElementById("page1").classList.remove("active");
+
+setTimeout(()=>{
+document.getElementById("page2").classList.add("active");
+},500);
+
+}
+else{
+
+alert("Wrong Password ❤️");
+
+clearPass();
+
+}
+
+}
+
+function nextPage(pageNumber){
+
+document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById("page"+pageNumber).classList.add("active");
+
+}
+
+function restartSite(){
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>
